@@ -25,6 +25,8 @@ namespace CustomRenderPipeline
             _camera = camera;
             _context = context;
 
+            DrawUI();
+
             if (!Cull(out var parameters))
                 return;
 
@@ -32,6 +34,7 @@ namespace CustomRenderPipeline
             DrawVisible();
             DrawUnsupportedShaders();
             DrawGizmos();
+            
             Submit();
 
         }
@@ -56,13 +59,14 @@ namespace CustomRenderPipeline
             _cullingResult = _context.Cull(ref parameters);
             _context.SetupCameraProperties(_camera);
             _commandBuffer.ClearRenderTarget(true, true, Color.clear);
-            _commandBuffer.BeginSample(bufferName);
+            _commandBuffer.name = _camera.name;
+            _commandBuffer.BeginSample(_camera.name);
             ExecuteCommandBuffer();
         }
 
         private void Submit()
         {
-            _commandBuffer.EndSample(bufferName);
+            _commandBuffer.EndSample(_camera.name);
             ExecuteCommandBuffer();
             _context.Submit();
         }

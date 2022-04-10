@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+
 namespace CustomRenderPipeline
 {
     [CreateAssetMenu(menuName = "Rendering/SpaceRunPipelineRenderAsset")]
