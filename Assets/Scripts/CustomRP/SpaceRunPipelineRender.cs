@@ -6,6 +6,11 @@ namespace CustomRenderPipeline
     {
         CameraRenderer _cameraRenderer = new CameraRenderer();
 
+        public SpaceRunPipelineRender()
+        {
+            GraphicsSettings.lightsUseLinearIntensity = true;
+        }
+
         protected override void Render(ScriptableRenderContext context, Camera[] cameras)
         {
             CamerasRender(context, cameras);
